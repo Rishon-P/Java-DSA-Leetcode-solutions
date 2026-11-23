@@ -1,0 +1,33 @@
+class ProductOfNumbers { 
+	
+	List<Integer> list; 
+	
+	public ProductOfNumbers() {
+		list = new ArrayList<>();	
+	}
+
+	public void add(int num) {
+		if (num==0){
+			this.list.clear();
+			return;
+		}
+		if (this.list.size()==0){
+			this.list.add(num);
+			return;
+		}
+		this.list.add(this.list.get(this.list.size()-1)*num);	
+		
+	}
+
+	public int getProduct(int k) {
+		int siz = this.list.size();
+		if (k>siz){
+			return 0;
+		} else if (k==siz){
+			return this.list.get(siz-1);	
+		} else {
+			return this.list.get(siz-1)/this.list.get(siz-k-1);
+		}	
+	}
+
+}
