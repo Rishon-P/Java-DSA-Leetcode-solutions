@@ -1,3 +1,4 @@
+// Solution 1 : Beats 40.25% solutions, uses priority queue for storing and modifing the next pointers
 class Solution {
 	public Node connect(Node root) {
 		Queue<Node> que = new ArrayDeque<>();
@@ -27,6 +28,35 @@ class Solution {
 				x = y;
 			}
 			j = j*2;
+		}
+		return root;
+	}
+}
+
+
+// Solution 2 : Beats 100% solutions, Iterating through each level directly.  
+class Solution {
+	public Node connect(Node root){
+		Node temp = root;
+		Node start  = root;
+		if (root==null || root.left==null){
+			return root;
+		}
+		while (true){
+			if (start.left==null){
+				break;
+			}
+			temp = start.left;  
+			while (start!=null){
+				if (start.left!=null){
+					start.left.next = start.right;	
+				} 
+				if (start.next!=null){
+					start.right.next = start.next.left;
+				} 
+				start = start.next;
+			}	
+			start = temp;
 		}
 		return root;
 	}
